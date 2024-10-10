@@ -16,9 +16,20 @@ argparse = "^1.4.0"
 pytest = "^6.2"
 
 
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.1.1"
+isort = "^5.13.2"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 gendiff = "scripts.in_point:main"
+
+[tool.isort]
+profile = "black"
+line_length = 79
+multi_line_output = 3
+include_trailing_comma = true
+skip = ["__pycache__", ".venv"]

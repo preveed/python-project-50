@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import argparse
 import json
 
 
@@ -14,7 +13,6 @@ def read_file(file_path):
     except json.JSONDecodeError:
         print(f"Error: File '{file_path}' is not a valid JSON.")
         return None
-        
 
 
 def generate_diff(file1, file2):
@@ -22,9 +20,9 @@ def generate_diff(file1, file2):
     data2 = read_file(file2)
     if data1 is None or data2 is None:
         return "Error in reading files."
-    
+
     diff_result = []
-    
+
     all_keys = sorted(set(data1.keys()).union(set(data2.keys())))
 
     for key in all_keys:
