@@ -31,6 +31,9 @@ jobs:
             ./cc-test-reporter before-build
             poetry run pytest --cov=gendiff --cov-report=xml:coverage.xml
             ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $?
+
+        env:
+            CC_TEST_REPORTER_ID: 7547c11db349b5ce919f47081861e63a53e50143e4b013697561ff96a5b9867f
   
       - name: Run flake8
         run: poetry run flake8 .
