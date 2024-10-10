@@ -30,7 +30,8 @@ jobs:
             chmod +x ./cc-test-reporter
             ./cc-test-reporter before-build
             poetry run pytest --cov=python-project-50 --cov-report=xml
-            ./cc-test-reporter after-build --exit-code $?
+            ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $?
+  
       - name: Run flake8
         run: poetry run flake8 .
       - name: Run isort
