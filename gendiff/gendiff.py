@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from .file_parser import read_file
+from .fileparser import read_file
 
 
 def generate_diff(file1, file2):
