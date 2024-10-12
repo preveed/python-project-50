@@ -1,18 +1,6 @@
 #!/usr/bin/env python3
 
-import json
-
-
-def read_file(file_path):
-    try:
-        with open(file_path, 'r') as file:
-            return json.load(file)
-    except FileNotFoundError:
-        print(f"Error: File '{file_path}' not found.")
-        return None
-    except json.JSONDecodeError:
-        print(f"Error: File '{file_path}' is not a valid JSON.")
-        return None
+from .file_parser import read_file
 
 
 def generate_diff(file1, file2):
