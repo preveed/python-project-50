@@ -39,7 +39,7 @@ def build_diff(data1, data2):
     return diff
 
 
-def stylish(diff, depth=0):
+def stylish(diff, depth=0):  # noqa: C901, E501
     indent = '    ' * depth
     lines = []
     for key, node in diff.items():
@@ -53,20 +53,21 @@ def stylish(diff, depth=0):
             lines.append(f"{indent}    }}")  # Закрывающая скобка
         elif node_type == "added":
             lines.append(
-                f"{indent}  + {key}: {format_value(node['value'], depth + 1)}")
+                f"{indent}  + {key}: {format_value(node['value'], depth+1)}")
         elif node_type == "removed":
             lines.append(
-                f"{indent}  - {key}: {format_value(node['value'], depth + 1)}")
+                f"{indent}  - {key}: {format_value(node['value'], depth+1)}")
         elif node_type == "unchanged":
             lines.append(
-                f"{indent}    {key}: {format_value(node['value'], depth + 1)}"
+                f"{indent}    {key}: {format_value(node['value'], depth+1)}"
             )
         elif node_type == "changed":
             lines.append(
-                f"{indent}  - {key}: {format_value(node['old_value'], depth + 1)}"
+                f"{indent}  - {key}: {format_value(node['old_value'], depth+1)}"
             )
             lines.append(
-                f"{indent}  + {key}: {format_value(node['new_value'], depth + 1)}")
+                f"{indent}  + {key}: {format_value(node['new_value'], depth+1)}"
+            )
 
     return '\n'.join(lines)
 
@@ -82,7 +83,7 @@ def format_value(value, depth):
     elif value is None:
         return 'null'  # Используем 'null' в стиле JavaScript
     elif isinstance(value, bool):
-        return 'true' if value else 'false'  # Используем JavaScript-стиль для булевых значений
+        return 'true' if value else 'false'
     else:
         return str(value)
 

@@ -1,7 +1,9 @@
+# flake8: noqa W291
+
 from gendiff.gendiff import generate_diff
 
 
-def test_generate_diff():
+def test_generate_diff():  # noqa: W291
 
     test_cases = [
         (
@@ -106,7 +108,7 @@ def test_generate_diff():
         assert result == expected_diff
 
 
-def test_generate_diff_file_identical():
+def test_generate_diff_file_identical():  # noqa: W291
 
     test_cases = [
         (
@@ -175,7 +177,7 @@ def test_generate_diff_file_identical():
         assert result == expected_diff
 
 
-def test_generate_diff_one_file_empty():
+def test_generate_diff_one_file_empty():  # noqa: W291
     test_cases = [
         (
             "tests/file1.json",
