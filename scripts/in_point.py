@@ -22,13 +22,14 @@ def main():
     parser.add_argument(
         '-f', '--format',
         type=str,
-        help='set format of output'
+        help='set format of output',
+        default='stylish'
     )
 
     args = parser.parse_args()
 
     # Вызываем функцию генерации диффа
-    result = generate_diff(args.first_file, args.second_file)
+    result = generate_diff(args.first_file, args.second_file, args.format)
     print(result)
 
 

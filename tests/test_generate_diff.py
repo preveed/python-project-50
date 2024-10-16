@@ -8,31 +8,102 @@ def test_generate_diff():
             "tests/file1.json",
             "tests/file2.json",
             """{
-  - follow: False
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: True
+    common: {
+      + follow: false
+        setting1: Value 1
+      - setting2: 200
+      - setting3: true
+      + setting3: null
+      + setting4: blah blah
+      + setting5: {
+            key5: value5
+        }
+        setting6: {
+            doge: {
+              - wow: 
+              + wow: so much
+            }
+            key: value
+          + ops: vops
+        }
+    }
+    group1: {
+      - baz: bas
+      + baz: bars
+        foo: bar
+      - nest: {
+            key: value
+        }
+      + nest: str
+    }
+  - group2: {
+        abc: 12345
+        deep: {
+            id: 45
+        }
+    }
+  + group3: {
+        deep: {
+            id: {
+                number: 45
+            }
+        }
+        fee: 100500
+    }
 }""",
         ),
         (
             "tests/file1.yaml",
             "tests/file2.yaml",
             """{
-  - follow: False
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: True
+    common: {
+      + follow: false
+        setting1: Value 1
+      - setting2: 200
+      - setting3: true
+      + setting3: null
+      + setting4: blah blah
+      + setting5: {
+            key5: value5
+        }
+        setting6: {
+            doge: {
+              - wow: 
+              + wow: so much
+            }
+            key: value
+          + ops: vops
+        }
+    }
+    group1: {
+      - baz: bas
+      + baz: bars
+        foo: bar
+      - nest: {
+            key: value
+        }
+      + nest: str
+    }
+  - group2: {
+        abc: 12345
+        deep: {
+            id: 45
+        }
+    }
+  + group3: {
+        deep: {
+            id: {
+                number: 45
+            }
+        }
+        fee: 100500
+    }
 }""",
         ),
     ]
-
     for file1, file2, expected_diff in test_cases:
-        result = generate_diff(file1, file2).strip()
-        assert result == expected_diff.strip()
+        result = generate_diff(file1, file2)
+        assert result == expected_diff
 
 
 def test_generate_diff_file_identical():
@@ -42,26 +113,66 @@ def test_generate_diff_file_identical():
             "tests/file1.json",
             "tests/file1.json",
             """{
-    follow: False
-    host: hexlet.io
-    proxy: 123.234.53.22
-    timeout: 50
+    common: {
+        setting1: Value 1
+        setting2: 200
+        setting3: true
+        setting6: {
+            doge: {
+                wow: 
+            }
+            key: value
+        }
+    }
+    group1: {
+        baz: bas
+        foo: bar
+        nest: {
+            key: value
+        }
+    }
+    group2: {
+        abc: 12345
+        deep: {
+            id: 45
+        }
+    }
 }""",
         ),
         (
             "tests/file1.yaml",
             "tests/file1.yaml",
             """{
-    follow: False
-    host: hexlet.io
-    proxy: 123.234.53.22
-    timeout: 50
+    common: {
+        setting1: Value 1
+        setting2: 200
+        setting3: true
+        setting6: {
+            doge: {
+                wow: 
+            }
+            key: value
+        }
+    }
+    group1: {
+        baz: bas
+        foo: bar
+        nest: {
+            key: value
+        }
+    }
+    group2: {
+        abc: 12345
+        deep: {
+            id: 45
+        }
+    }
 }""",
         ),
     ]
-    for file1, file2, expected_diff_identical in test_cases:
-        result = generate_diff(file1, file2).strip()
-        assert result == expected_diff_identical.strip()
+    for file1, file2, expected_diff in test_cases:
+        result = generate_diff(file1, file2)
+        assert result == expected_diff
 
 
 def test_generate_diff_one_file_empty():
@@ -70,24 +181,64 @@ def test_generate_diff_one_file_empty():
             "tests/file1.json",
             "tests/file-empty.json",
             """{
-  - follow: False
-  - host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
+  - common: {
+        setting1: Value 1
+        setting2: 200
+        setting3: true
+        setting6: {
+            key: value
+            doge: {
+                wow: 
+            }
+        }
+    }
+  - group1: {
+        baz: bas
+        foo: bar
+        nest: {
+            key: value
+        }
+    }
+  - group2: {
+        abc: 12345
+        deep: {
+            id: 45
+        }
+    }
 }""",
         ),
         (
             "tests/file1.yaml",
-            "tests/empty-file.yaml",
+            "tests/file-empty.yaml",
             """{
-  - follow: False
-  - host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
+  - common: {
+        setting1: Value 1
+        setting2: 200
+        setting3: true
+        setting6: {
+            key: value
+            doge: {
+                wow: 
+            }
+        }
+    }
+  - group1: {
+        baz: bas
+        foo: bar
+        nest: {
+            key: value
+        }
+    }
+  - group2: {
+        abc: 12345
+        deep: {
+            id: 45
+        }
+    }
 }""",
         ),
     ]
 
     for file1, file2, expected_diff_one_empty in test_cases:
-        result = generate_diff(file1, file2).strip()
-        assert result == expected_diff_one_empty.strip()
+        result = generate_diff(file1, file2)
+        assert result == expected_diff_one_empty
