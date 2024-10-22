@@ -43,5 +43,5 @@ def build_diff(data1, data2):
             diff[key] = {'type': 'removed', 'value': data1[key]}
         else:
             diff[key] = {'type': 'added', 'value': data2[key]}
-    
+
     return diff
