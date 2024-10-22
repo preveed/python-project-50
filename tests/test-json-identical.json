@@ -1,0 +1,77 @@
+{
+    "common": {
+        "type": "nested",
+        "children": {
+            "setting1": {
+                "type": "unchanged",
+                "value": "Value 1"
+            },
+            "setting2": {
+                "type": "unchanged",
+                "value": 200
+            },
+            "setting3": {
+                "type": "unchanged",
+                "value": true
+            },
+            "setting6": {
+                "type": "nested",
+                "children": {
+                    "doge": {
+                        "type": "nested",
+                        "children": {
+                            "wow": {
+                                "type": "unchanged",
+                                "value": ""
+                            }
+                        }
+                    },
+                    "key": {
+                        "type": "unchanged",
+                        "value": "value"
+                    }
+                }
+            }
+        }
+    },
+    "group1": {
+        "type": "nested",
+        "children": {
+            "baz": {
+                "type": "unchanged",
+                "value": "bas"
+            },
+            "foo": {
+                "type": "unchanged",
+                "value": "bar"
+            },
+            "nest": {
+                "type": "nested",
+                "children": {
+                    "key": {
+                        "type": "unchanged",
+                        "value": "value"
+                    }
+                }
+            }
+        }
+    },
+    "group2": {
+        "type": "nested",
+        "children": {
+            "abc": {
+                "type": "unchanged",
+                "value": 12345
+            },
+            "deep": {
+                "type": "nested",
+                "children": {
+                    "id": {
+                        "type": "unchanged",
+                        "value": 45
+                    }
+                }
+            }
+        }
+    }
+}

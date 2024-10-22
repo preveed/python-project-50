@@ -3,6 +3,7 @@
 from .fileparser import read_file
 from .stylish import stylish
 from .plain import plain
+from .json import json
 
 
 def generate_diff(file1, file2, format_name='stylish'):
@@ -15,6 +16,8 @@ def generate_diff(file1, file2, format_name='stylish'):
         return f"{{\n{stylish(diff)}\n}}"
     elif format_name == 'plain':
         return plain(diff)
+    elif format_name == 'json':
+        return json(diff)
     else:
         return "Unsupported format."
 
@@ -40,4 +43,5 @@ def build_diff(data1, data2):
             diff[key] = {'type': 'removed', 'value': data1[key]}
         else:
             diff[key] = {'type': 'added', 'value': data2[key]}
+    
     return diff

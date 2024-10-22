@@ -24,6 +24,24 @@ def test_generate_diff():  # noqa: W291
             "tests/test-plain-diff",
             "plain"
         ),
+        (
+            "tests/file1.yaml",
+            "tests/file2.yaml",
+            "tests/test-plain-diff",
+            "plain"
+        ),
+        (
+            "tests/file1.json",
+            "tests/file2.json",
+            "tests/test-json-diff.json",
+            "json"
+        ),
+                (
+            "tests/file1.yaml",
+            "tests/file2.yaml",
+            "tests/test-json-diff.json",
+            "json"
+        ),
 
     ]
     
@@ -61,6 +79,18 @@ def test_generate_diff_file_identical():  # noqa: W291
             "tests/file1.yaml",
             "tests/test-plain-identical",
             "plain",
+        ),
+        (
+            "tests/file1.json",
+            "tests/file1.json",
+            "tests/test-json-identical.json",
+            "json"
+        ),
+        (
+            "tests/file1.yaml",
+            "tests/file1.yaml",
+            "tests/test-json-identical.json",
+            "json"
         )
     ]
     for file1, file2, diff, format_name in test_cases:
@@ -97,6 +127,18 @@ def test_generate_diff_one_file_empty():  # noqa: W291
             "tests/test-plain-one-file-empty",
             "plain",
         ),
+                (
+            "tests/file1.json",
+            "tests/file-empty.json",
+            "tests/test-json-one-empty.json",
+            "json"
+        ),
+        (
+            "tests/file1.yaml",
+            "tests/file-empty.yaml",
+            "tests/test-json-one-empty.json",
+            "json"
+        )
     ]
     for file1, file2, diff, format_name in test_cases:
         result = generate_diff(file1, file2, format_name)
