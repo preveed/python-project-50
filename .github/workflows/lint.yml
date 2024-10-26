@@ -25,14 +25,19 @@ jobs:
           pip install poetry
           poetry install
 
+      - name: Run initial pytest check
+        run: |
+          poetry run pytest -v --maxfail=1 --disable-warnings
+        continue-on-error: true
+
       - name: Run Code Climate analysis
+        if: ${{ success() }}
         uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           debug: true
-          coverageCommand: "pytest --cov-report xml --cov=."
-  
+          coverageCommand: "poetry run pytest --cov-report xml --cov=."
+
       - name: Run flake8
         run: poetry run flake8 .
-
