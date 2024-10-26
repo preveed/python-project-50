@@ -57,5 +57,7 @@ def format_value(value):
         return 'null'
     elif isinstance(value, bool):
         return 'true' if value else 'false'
+    elif isinstance(value, (int, float)):
+        return value
     else:
         return f"'{str(value)}'"
