@@ -1,20 +1,22 @@
-#!/usr/bin/env python3
-
 import json
-
 import yaml
 
+def load_file(file_path):
+    with open(file_path, 'r') as file:
+        return file.read()
 
-def read_file(file_path):
-    try:
-        with open(file_path, "r") as file:
-            if file_path.endswith(".json"):
-                return json.load(file)
-            elif file_path.endswith((".yaml", ".yml")):
-                return yaml.safe_load(file)
-    except FileNotFoundError:
-        print(f"Error: File '{file_path}' not found.")
-        return None
-    except (json.JSONDecodeError, yaml.YAMLError) as e:
-        print(f"Error: File '{file_path}' is not a valid JSON or YAML. {e}.")
-        return None
+
+def parse_content(content, file_extension):
+    if file_extension == 'json':
+        return json.loads(content)
+    elif file_extension in {'yaml', 'yml'}:
+        return yaml.safe_load(content)
+    else:
+        raise ValueError("Unsupported file format")
+
+
+def load_and_parse_file(file_path):
+    content = load_file(file_path)
+    file_extension = file_path.split('.')[-1]
+    
+    return parse_content(content, file_extension)

@@ -25,16 +25,13 @@ jobs:
           pip install poetry
           poetry install
 
-      - name: Run tests with coverage
-        run: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
-            ./cc-test-reporter before-build
-            poetry run pytest --cov=gendiff --cov-report=xml:coverage.xml
-            ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $?
-
+      - name: Run Code Climate analysis
+        uses: paambaati/codeclimate-action@v3.0.0
         env:
-            CC_TEST_REPORTER_ID: 7547c11db349b5ce919f47081861e63a53e50143e4b013697561ff96a5b9867f
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          debug: true
+          coverageCommand: "pytest --cov-report xml --cov=."
   
       - name: Run flake8
         run: poetry run flake8 .

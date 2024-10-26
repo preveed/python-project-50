@@ -20,3 +20,6 @@ dist/
 
 *.cast
 *.vscode
+
+Pipfile.lock
+Pipfile

@@ -1,4 +1,4 @@
-def json(diff, depth=0):  # noqa: C901, E501
+def make_json(diff, depth=0):
     lines = ['{']
     indent = '    ' * depth
 
@@ -11,7 +11,7 @@ def json(diff, depth=0):  # noqa: C901, E501
             lines.append(f'{inner_indent}"{key}": {{')
             lines.append(f'{inner_indent}    "type": "{node_type}",')
             lines.append(
-                f'{inner_indent}    "children": {json(children, depth + 2)}')
+                f'{inner_indent}    "children": {make_json(children, depth + 2)}')
             lines.append(f'{inner_indent}}}')
         elif node_type in ('added', 'unchanged', 'removed'):
             value = node['value']
