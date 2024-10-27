@@ -33,24 +33,24 @@ def process_nested(key, node, indent, depth):
 
 
 def process_added(key, node, indent, depth):
-    return f"{indent}  + {key}: {format_value(node['value'], depth+1)}"
+    return f"{indent}  + {key}: {format_value(node['value'], depth + 1)}"
 
 
 def process_removed(key, node, indent, depth):
-    return f"{indent}  - {key}: {format_value(node['value'], depth+1)}"
+    return f"{indent}  - {key}: {format_value(node['value'], depth + 1)}"
 
 
 def process_unchanged(key, node, indent, depth):
-    return f"{indent}    {key}: {format_value(node['value'], depth+1)}"
+    return f"{indent}    {key}: {format_value(node['value'], depth + 1)}"
 
 
 def process_changed(key, node, indent, depth):
     lines = []
     lines.append(
-        f"{indent}  - {key}: {format_value(node['old_value'], depth+1)}"
+        f"{indent}  - {key}: {format_value(node['old_value'], depth + 1)}"
     )
     lines.append(
-        f"{indent}  + {key}: {format_value(node['new_value'], depth+1)}"
+        f"{indent}  + {key}: {format_value(node['new_value'], depth + 1)}"
     )
 
     return '\n'.join(lines)
