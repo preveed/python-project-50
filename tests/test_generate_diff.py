@@ -80,6 +80,13 @@ from gendiff.diffgenerator import generate_diff
 ])
 def test_generate_diff(file1, file2, expected, format_name):
     result = generate_diff(file1, file2, format_name)
+    assert isinstance(result, str)
     with open(expected, 'r') as file:
-        expected_output = file.read()
-    assert result == expected_output
+        if format_name == 'json':
+            import json
+            result = json.loads(result)
+            expected_output = json.load(file)
+        else:
+            expected_output = file.read()
+
+    assert str(result) == str(expected_output)
