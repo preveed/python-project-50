@@ -59,12 +59,12 @@ def process_changed(key, node, indent, depth):
 def format_value(value, depth):
     if isinstance(value, dict):
         return format_dict(value, depth)
-    elif value is None:
+    if value is None:
         return 'null'
-    elif isinstance(value, bool):
+    if isinstance(value, bool):
         return 'true' if value else 'false'
-    else:
-        return str(value)
+
+    return str(value)
 
 
 def format_dict(value, depth):

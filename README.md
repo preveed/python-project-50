@@ -27,7 +27,7 @@ usage: gendiff [-h] [--format FORMAT] first_file second_file
 
 Форматы
 
-ОБязательные аргуметы:
+Обязательные аргуметы:
   first_file - первый файл для сравнения
   second_file - второй файл для сравнения
 

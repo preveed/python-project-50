@@ -12,21 +12,24 @@ def make_plain(diff, path='', result=None):
 
 def process_node(key, node, path):
     node_type = node.get('type')
-    result = []
-    if node_type == 'nested':
-        result = process_nested(key, node, path)
-    elif node_type == 'added':
-        result = process_added(key, node, path)
-    elif node_type == 'removed':
-        result = process_removed(key, path)
-    elif node_type == 'changed':
-        result = process_changed(key, node, path)
-    elif node_type == 'unchanged':
-        result = None
-    else:
-        raise ValueError(f"Unexpected node type: {node_type}")
 
-    return result
+    process_map = {
+        'nested': process_nested,
+        'added': process_added,
+        'removed': process_removed,
+        'changed': process_changed,
+        'unchanged': lambda k, n, p: None
+    }
+
+    process_function = process_map.get(node_type)
+
+    if process_function is None:
+        raise ValueError(f"Unexpected node type: {node_type}")
+    
+    if node_type == 'removed':
+        return process_function(key, path)
+
+    return process_function(key, node, path)
 
 
 def process_nested(key, node, path):
