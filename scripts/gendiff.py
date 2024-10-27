@@ -4,7 +4,6 @@ import json
 import yaml
 import argparse
 from gendiff.diffgenerator import generate_diff
-from gendiff.fileparser import load_and_parse_file
 
 
 def main():
@@ -28,8 +27,8 @@ def main():
     args = parser.parse_args()
 
     try:
-        first_data = load_and_parse_file(args.first_file)
-        second_data = load_and_parse_file(args.second_file)
+        first_data = args.first_file
+        second_data = args.second_file
         result = generate_diff(first_data, second_data, args.format)
         print(result)
     except FileNotFoundError as e:

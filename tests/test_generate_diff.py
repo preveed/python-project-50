@@ -89,4 +89,4 @@ def test_generate_diff(file1, file2, expected, format_name):
         else:
             expected_output = file.read()
 
-    assert str(result) == str(expected_output)
+    assert result == expected_output
