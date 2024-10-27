@@ -25,7 +25,7 @@ def process_node(key, node, path):
 
     if process_function is None:
         raise ValueError(f"Unexpected node type: {node_type}")
-    
+
     if node_type == 'removed':
         return process_function(key, path)
 
