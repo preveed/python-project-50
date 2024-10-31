@@ -1,35 +1,36 @@
-# Описание проекта
+# Генератор различий
+### Описание проекта
 
-'''gendiff''' — это утилита для сравнения конфигурационных файлов в форматах JSON и YAML. Она позволяет выявлять различия между двумя версиями файлов, отображая их в различных форматах (stylish, plain, json). Инструмент полезен для DevOps и разработчиков, которые работают с конфигурациями и хотят отслеживать изменения.
+`gendiff` — это утилита для сравнения конфигурационных файлов в форматах JSON и YAML. Она позволяет выявлять различия между двумя версиями файлов, отображая их в различных форматах (stylish, plain, json). Инструмент полезен для DevOps и разработчиков, которые работают с конфигурациями и хотят отслеживать изменения.
 
-## Требования
+### Требования
 Python 3.8 или выше
 
 
-## Установка
+### Установка
 Склонируйте репозиторий:
 
-'git clone https://github.com/preveed/python-project-50.git'
-'cd python-project-50'
+`git clone https://github.com/preveed/python-project-50.git`
+`cd python-project-50`
 
-## Установите пакет:
-'pip install .'
+### Установите пакет:
+`pip install .`
 
-## Использование
+### Использование
 Для получения справки по команде gendiff, выполните:
-'gendiff --help'
+`gendiff --help`
 
-## Пример вывода команды:
-'usage: gendiff [-h] [--format FORMAT] first_file second_file'
+### Пример вывода команды:
+`usage: gendiff [-h] [--format FORMAT] first_file second_file`
 
-## Форматы
+### Форматы
 ### Обязательные аргуметы:
-  + 'first_file' - первый файл для сравнения
-  + 'second_file' - второй файл для сравнения
+  + `first_file` - первый файл для сравнения
+  + `second_file` - второй файл для сравнения
 
 ### Опциональные аргументы:
-  + '-h, --help' - помощь
-  + '--format FORMAT' - формат вывода (stylish, plain, json). По умолчанию "stylish"
+  + `-h, --help` - помощь
+  + `--format FORMAT` - формат вывода (stylish, plain, json). По умолчанию _"stylish"_
 
 ## Hexlet tests and linter status:
 [![Actions Status](https://github.com/preveed/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/preveed/python-project-50/actions)
