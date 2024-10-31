@@ -1,30 +1,13 @@
-from .fileparser import load_and_parse_file
-from .formatters.stylish import make_stylish
-from .formatters.plain import make_plain
-from .formatters.json import make_json
+from .file_parser import load_and_parse_file
+from .formatters.get_format import format_diff
 
 
 def generate_diff(file1, file2, format_name='stylish'):
     data1 = load_and_parse_file(file1)
     data2 = load_and_parse_file(file2)
-    if data1 is None or data2 is None:
-        return "Error in reading files."
 
     diff = build_diff(data1, data2)
     return format_diff(diff, format_name)
-
-
-def format_diff(diff, format_name):
-    if format_name == 'stylish':
-        result = f"{{\n{make_stylish(diff)}\n}}"
-    elif format_name == 'plain':
-        result = make_plain(diff)
-    elif format_name == 'json':
-        result = make_json(diff)
-    else:
-        result = "Unsupported format."
-
-    return result
 
 
 def build_diff(data1, data2):

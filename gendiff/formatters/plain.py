@@ -11,7 +11,7 @@ def make_plain(diff, path='', result=None):
 
 
 def process_node(key, node, path):
-    node_type = node.get('type')
+    node_type = node['type']
 
     process_map = {
         'nested': process_nested,
@@ -21,13 +21,7 @@ def process_node(key, node, path):
         'unchanged': lambda k, n, p: None
     }
 
-    process_function = process_map.get(node_type)
-
-    if process_function is None:
-        raise ValueError(f"Unexpected node type: {node_type}")
-
-    if node_type == 'removed':
-        return process_function(key, path)
+    process_function = process_map[node_type]
 
     return process_function(key, node, path)
 
@@ -42,7 +36,7 @@ def process_added(key, node, path):
     return f"Property '{path}{key}' was added with value: {value}"
 
 
-def process_removed(key, path):
+def process_removed(key, _, path):
     return (f"Property '{path}{key}' was removed")
 
 

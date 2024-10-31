@@ -3,7 +3,7 @@
 import json
 import yaml
 import argparse
-from gendiff.diffgenerator import generate_diff
+from gendiff.diff_generator import generate_diff
 
 
 def main():
@@ -25,20 +25,19 @@ def main():
         default='stylish')
 
     args = parser.parse_args()
+    first_data = args.first_file
+    second_data = args.second_file
 
     try:
-        first_data = args.first_file
-        second_data = args.second_file
         result = generate_diff(first_data, second_data, args.format)
-        print(result)
     except FileNotFoundError as e:
         print(f"Error: {e}")
     except (json.JSONDecodeError, yaml.YAMLError) as e:
         print(f"Error: Invalid file format. {e}")
     except ValueError as e:
         print(f"Error: {e}")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+    else:
+        print(result)
 
 
 if __name__ == '__main__':

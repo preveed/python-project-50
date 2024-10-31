@@ -3,14 +3,13 @@ def make_stylish(diff, depth=0):
     lines = []
     for key, node in diff.items():
         lines.append(process_node(key, node, indent, depth))
-
+    if depth == 0:
+        return '{\n' + '\n'.join(lines) + '\n}'
     return '\n'.join(lines)
 
 
 def process_node(key, node, indent, depth):
-    node_type = node.get('type')
-    if not node_type:
-        raise ValueError(f"Node type is missing: {node}")
+    node_type = node['type']
 
     node_processors = {
         "nested": process_nested,
@@ -69,9 +68,8 @@ def format_value(value, depth):
 
 def format_dict(value, depth):
     indent = '    ' * depth
-    lines = ['{']
+    lines = []
     for key, val in value.items():
         lines.append(f"{indent}    {key}: {format_value(val, depth + 1)}")
-    lines.append(f"{indent}}}")
 
-    return '\n'.join(lines)
+    return '{\n' + '\n'.join(lines) + '\n' + indent + '}'

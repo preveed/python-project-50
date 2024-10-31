@@ -41,22 +41,41 @@ def make_json(diff, depth=0):
     return '\n'.join(lines)
 
 
-def format_value(value, depth):  # noqa: C901, E501
-    indent = '    ' * depth
+def format_value(value, depth):
     if isinstance(value, dict):
-        lines = ['{']
-        for idx, (key, val) in enumerate(value.items()):
-            lines.append(
-                f'{indent}    "{key}": {format_value(val, depth + 1)}')
-            if idx < len(value) - 1:
-                lines[-1] += ','
-        lines.append(f'{indent}}}')
-        return '\n'.join(lines)
+        return format_dict(value, depth)
     elif value is None:
-        return 'null'
+        return format_null()
     elif isinstance(value, bool):
-        return 'true' if value else 'false'
+        return format_bool(value)
     elif isinstance(value, (int, float)):
-        return str(value)
+        return format_number(value)
     else:
-        return f'"{str(value)}"'
+        return format_string(value)
+
+
+def format_dict(value, depth):
+    indent = '    ' * depth
+    lines = ['{']
+    for idx, (key, val) in enumerate(value.items()):
+        lines.append(f'{indent}    "{key}": {format_value(val, depth + 1)}')
+        if idx < len(value) - 1:
+            lines[-1] += ','
+    lines.append(f'{indent}}}')
+    return '\n'.join(lines)
+
+
+def format_null():
+    return 'null'
+
+
+def format_bool(value):
+    return 'true' if value else 'false'
+
+
+def format_number(value):
+    return str(value)
+
+
+def format_string(value):
+    return f'"{str(value)}"'

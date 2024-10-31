@@ -25,11 +25,6 @@ jobs:
           pip install poetry
           poetry install
 
-      - name: Run initial pytest check
-        run: |
-          poetry run pytest -v --maxfail=1 --disable-warnings
-        continue-on-error: true
-
       - name: Run Code Climate analysis
         if: ${{ success() }}
         uses: paambaati/codeclimate-action@v3.0.0

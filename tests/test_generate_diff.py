@@ -1,5 +1,5 @@
 import pytest
-from gendiff.diffgenerator import generate_diff
+from gendiff.diff_generator import generate_diff
 
 
 @pytest.mark.parametrize("file1, file2, expected, format_name", [
@@ -73,8 +73,8 @@ from gendiff.diffgenerator import generate_diff
      'tests/fixtures/file-empty.json',
      'tests/fixtures/test-json-one-empty.json',
      'json'),
-    ('tests/fixtures/file1.json',
-     'tests/fixtures/file-empty.json',
+    ('tests/fixtures/file1.yaml',
+     'tests/fixtures/file-empty.yaml',
      'tests/fixtures/test-json-one-empty.json',
      'json'),
 ])
@@ -82,11 +82,6 @@ def test_generate_diff(file1, file2, expected, format_name):
     result = generate_diff(file1, file2, format_name)
     assert isinstance(result, str)
     with open(expected, 'r') as file:
-        if format_name == 'json':
-            import json
-            result = json.loads(result)
-            expected_output = json.load(file)
-        else:
-            expected_output = file.read()
+        expected_output = file.read()
 
     assert result == expected_output
