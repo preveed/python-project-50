@@ -11,6 +11,7 @@ Python 3.8 или выше
 Склонируйте репозиторий:
 
 `git clone https://github.com/preveed/python-project-50.git`
+
 `cd python-project-50`
 
 ### Установите пакет:
@@ -18,6 +19,7 @@ Python 3.8 или выше
 
 ### Использование
 Для получения справки по команде gendiff, выполните:
+
 `gendiff --help`
 
 ### Пример вывода команды:
