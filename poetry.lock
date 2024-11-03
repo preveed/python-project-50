@@ -12,17 +12,6 @@ files = [
 ]
 
 [[package]]
-name = "asciinema"
-version = "2.4.0"
-description = "Terminal session recorder"
-optional = false
-python-versions = "*"
-files = [
-    {file = "asciinema-2.4.0-py3-none-any.whl", hash = "sha256:249ccf108509d643ddaf38979dac48c99e9e251f597173d8553a30d7a6423104"},
-    {file = "asciinema-2.4.0.tar.gz", hash = "sha256:828e04c36ba622a7b8f8f912c8f0c1329538b6c7ed1c0d1b131bbbfe3a221707"},
-]
-
-[[package]]
 name = "atomicwrites"
 version = "1.4.1"
 description = "Atomic file writes."
@@ -379,4 +368,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "fd4f73f9c713c77173d1212b404b05ac55551fb59a9619867a15f8e037dc3e9a"
+content-hash = "149271b8831820e4136091ec2494d687d4eb4c8758a2e89541fd9967e02addb0"
